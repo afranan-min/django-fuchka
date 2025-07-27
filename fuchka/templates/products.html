@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="my-4">🛒 Your Cart</h2>
+{% if cart_items %}
+  <ol class="list-group list-group-numbered">
+    {% for item in cart_items %}
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold">{{ item.name }}</div>
+          Taka/-{{ item.price }}
+        </div>
+        <button class="remove-btn btn btn-md" data-id="{{ item.id }}">x</button>
+      </li>
+    {% endfor %}
+  </ol>
+
+  <!-- Only show Order Now if there are items -->
+  <div class="text-end mt-4">
+    <a class="btn btn-success" href="{% url 'order_whatsapp' %}" target="_blank">📦 Order Now</a>
+  </div>
+{% else %}
+  <!-- Centered message when cart is empty -->
+  <div class="text-center mt-5">
+    <h4>🧺 Your cart is empty.</h4>
+  </div>
+{% endif %}
+
+{% endblock %}
