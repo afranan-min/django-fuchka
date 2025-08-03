@@ -26,7 +26,7 @@ def product_page(request):
     cart_items = CartItem.objects.all()
     return render(request, 'products.html', {'cart_items': cart_items})
 
-
+@csrf_exempt
 def add_to_cart(request):
     if request.method == 'POST':
         name = request.POST.get('name')
